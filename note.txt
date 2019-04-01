@@ -82,6 +82,38 @@ commit 之后的文 件还原 git reset --hard HEAD^或 git reset --hard [版本
 
 5、删除文件
 
+$ rm test.txt
+
+直接删除文件
+
+一是确实要从版本库中删除该文件，那就用命令git rm删掉，并且git commit：
+$ git rm test.txt
+$ git commit -m "remove test.txt"
+
+另一种情况是删错了，恢复方法如下
+
+$ git checkout -- test.txt
+
+git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。
+
+
+
+总结：
+
+当你要删除文件的时候，可以采用命令：rm test.txt
+
+这个时候有两种情况
+
+第一种情况:的确要把test.txt删掉，那么可以执行
+                   git rm test.txt
+                   git commit -m "remove test.txt"
+                   文件被删除，且删除记录上传本地库
+
+第二种情况:误删文件，想恢复，这时候还没有commit -m "remove test.txt"，执行git checkout test.txt将文件恢复。
+
+如果执行完git commit -m "remove test.txt"后就不能用checkout恢复了，得用git reset --hard HEAD^
+
+
 
 
 
