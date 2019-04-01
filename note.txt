@@ -80,6 +80,11 @@ commit 之后的文 件还原 git reset --hard HEAD^或 git reset --hard [版本
 我就是实例,看了n多次
 
 
+5、删除文件
+
+
+
+
 
 
 
