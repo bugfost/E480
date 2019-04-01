@@ -114,6 +114,48 @@ git checkout其实是用版本库里的版本替换工作区的版本，无论�
 如果执行完git commit -m "remove test.txt"后就不能用checkout恢复了，得用git reset --hard HEAD^
 
 
+远程仓库
+
+首先要创建SSHkey
+
+$  ssh-keygen -t rsa -C "bugfost@gmail.com"
+Generating public/private rsa key pair.
+Enter file in which to save the key (/c/Users/bugsoft/.ssh/id_rsa): /c/Users/bugsoft/telnet/id_rsa
+
+这里可以自己选择存放SSH密钥的位置
+
+然后要登陆github账户，进入账户设置
+用记事本打开id_ras.pub将内容添加至新的sshkey中
+
+添加远程仓库
+有仓库就可以直接使用，没有要去网站建立一个仓库
+(填写名字确认就可以了)
+
+下面就是本地连接远程仓库了，做映射
+git remote add origin git@github.com:bugfost(账户名)/liantong.git(新建的仓库或者自己已有的仓库均可)
+
+最后推送自己的本地内容到远程仓库
+$ git push -u origin master
+$ git push origin master（后续版本）
+
+
+cd~(进入用户主目录)
+cd .ssh(进入.ssh目录)
+ls(列出.ssh目录的文件，可以看到id_rsa  id_rsa.pub两个文件)
+cat ~/.ssh/id_rsa.pub(可以看到id_rsa.pub文件的内容，复制即可)
+
+git remote －v 查看远程origin 
+git remote rm origin 删除远程origin 
+
+
+总结：
+
+要关联一个远程库，使用命令git remote add origin git@server-name:path/repo-name.git；
+
+关联后，使用命令git push -u origin master第一次推送master分支的所有内容；
+
+此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改
+
 
 
 
