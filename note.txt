@@ -209,6 +209,97 @@ Git鼓励大量使用分支：
 
 删除分支：git branch -d <name>
 
+解决冲突
+
+在分支上修改提交
+
+$ git checkout -b feature1
+$ git add readme.txt
+$ git commit -m "AND simple"
+
+切换到master上修改再提交
+
+$ git checkout master
+$ git add readme.txt 
+$ git commit -m "& simple"
+
+合并产生冲突，两个分支第一次提交的内容不一致
+存在冲突，无法合并
+
+$ git merge feature1
+Auto-merging readme.txt
+CONFLICT (content): Merge conflict in readme.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+查看文件冲突的内容
+cat readme.txt
+
+Git is a distributed version control system.
+Git is free software distributed under the GPL.
+Git has a mutable index called stage.
+Git tracks changes of files.
+<<<<<<< HEAD
+Creating a new branch is quick & simple.
+=======
+Creating a new branch is quick AND simple.
+>>>>>>> feature1
+
+再次修改冲突内容，并提交
+（修改的内容是自己想要的）
+
+$ git add readme.txt 
+$ git commit -m "conflict fixed"
+
+冲突自动解决
+第二次提交只有master分支有内容，不存在其他成图
+
+$ git log --graph --pretty=oneline --abbrev-commit
+
+删除分支
+
+$ git branch -d feature1
+
+分支管理策略
+禁用fast forward模式，看出分支历史的分支信息
+
+创建分支并提交
+$ git checkout -b dev
+$ git add readme.txt 
+$ git commit -m "add merge"
+
+切回master分支
+$ git checkout master
+
+合并分支
+不采取ff模式，就需要新建一个commit描述
+$ git merge --no-ff -m "merge with no-ff" dev
+
+查看分支历史：
+$ git log --graph --pretty=oneline --abbrev-commit
+
+
+简单地说就是 -no-ff 模式进行了一次新的 git commit 操作。
+
+这也是为什么采用 -no-ff 模式要加入参数 -m 的原因。
+
+总结：
+
+Git分支十分强大，在团队开发中应该充分应用。
+
+合并分支时，加上--no-ff参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
