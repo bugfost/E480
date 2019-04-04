@@ -361,6 +361,58 @@ vi & vim 有两种工作模式：
 （2）放弃所有文件修改，但不退出 vi ，即回退到文件打开后最后一次保存操作的状态，继续进行文件操作：按下 "ESC" 键进入命令模式，键入 ":e!" ，回车后回到命令模式。
 
 
+feature 分支
+
+新建一个feature分支
+$ git checkout -b feature-vulcan
+
+修改并提交
+$ git add vulcan.py
+$ git commit -m "add feature vulcan"
+
+切换到dev分支
+$ git checkout dev
+
+临时强制删除feature但是不合并分支到dev
+$ git branch -d feature-vulcan
+error: The branch 'feature-vulcan' is not fully merged.
+If you are sure you want to delete it, run 'git branch -D feature-vulcan'.
+
+
+使用——D参数强制删除
+$ git branch -D feature-vulcan
+
+总结：
+开发一个新feature，最好新建一个分支；
+
+如果要丢弃一个没有被合并过的分支，可以通过git branch -D <name>强行删除。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
